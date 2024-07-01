@@ -65,11 +65,7 @@ function App() {
               Home
             </a>
             <div className="text-lg border-r-2 border-slate-500" />
-            <a
-              href="https://github.com/aman090304/"
-              target="__blank"
-              className="text-lg px-2 hover:underline  md:px-5 "
-            >
+            <a href="https://github.com/aman090304/Musica" target="__blank" className="text-lg px-2 hover:underline  md:px-5 ">
               Github
             </a>
           </div>
