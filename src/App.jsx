@@ -60,7 +60,7 @@ function App() {
               </button>
             </div>
           </div>
-          <div className="  p-4 justify-end flex">
+          <div className="  p-4 justify-end hidden sm:flex">
             <a href="/" className="text-lg hover:underline px-2 md:px-5">
               Home
             </a>
