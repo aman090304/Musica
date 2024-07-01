@@ -45,7 +45,7 @@ function App() {
             </a>
           </div>
           <div className="p-4 flex ">
-            <div className=" flex gap-2 w-40 sm:w-60 md:w-[500px] lg:w-[700px]">
+            <div className=" flex gap-2 w-44 sm:w-60 md:w-[500px] lg:w-[700px]">
               <input
                 type="search"
                 placeholder="Search"
@@ -53,19 +53,23 @@ function App() {
                 onChange={(event) => {
                   setSearchValue(event.target.value);
                 }}
-                className="flex px-4 text-black rounded-lg w-40 h-9 sm:w-60 md:w-[500px] lg:w-[700px] focus:border-green-500 "
+                className="flex px-5 text-black rounded-lg w-40 h-9 sm:w-60 md:w-[500px] lg:w-[700px] focus:border-green-500 "
               ></input>
-              <button onClick={getTracks} className=" m-1">
+              <button onClick={getTracks} className="">
                 <BiSearch className="" />
               </button>
             </div>
           </div>
-          <div className="  p-4 justify-end flex">
+          <div className="  p-4 justify-end hidden sm:flex">
             <a href="/" className="text-lg hover:underline px-2 md:px-5">
               Home
             </a>
             <div className="text-lg border-r-2 border-slate-500" />
-            <a href="https://github.com/aman090304/" target="__blank" className="text-lg px-2 hover:underline  md:px-5 ">
+            <a
+              href="https://github.com/aman090304/"
+              target="__blank"
+              className="text-lg px-2 hover:underline  md:px-5 "
+            >
               Github
             </a>
           </div>
