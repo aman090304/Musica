@@ -12,7 +12,7 @@ function App() {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `https://v1.nocodeapi.com/xoolxunt/spotify/SrCbdICLAGUyJobF/search?q=${searchValue}`
+        `https://v1.nocodeapi.com/xoolxunt/spotify/emqdkLQoNzsETzyo/search?q=&{searchValue}`
       );
 
       if (!response.ok) {
