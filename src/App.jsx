@@ -7,12 +7,13 @@ function App() {
   const [tracks, setTracks] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isAvailable, setIsAvailable] = useState(false);
 
   async function getTracks() {
     try {
       setIsLoading(true);
       const response = await fetch(
-        `https://v1.nocodeapi.com/xoolxunt/spotify/SrCbdICLAGUyJobF/search?q=${searchValue}`
+        `https://v1.nocodeapi.com/xoolxunt/spotify/emqdkLQoNzsETzyo/search?q=${searchValue}`
       );
 
       if (!response.ok) {
@@ -22,16 +23,22 @@ function App() {
       const data = await response.json();
       console.log(data.albums.items);
       // Add safety checks
-      if (data && data.albums) {
+      if (data && data.albums && data.albums.items) {
         setTracks(data.albums.items);
       } else {
         console.error("Unexpected response format:", data);
       }
     } catch (error) {
-      console.error("Error fetching tracks:", error);
-      setError(error.message);
+      if (error.message.includes("429")) {
+        console.log("TOO MANY API REQUESTS");
+        setIsAvailable(true);
+      } else {
+        console.error("Error fetching tracks:", error);
+        setError(error.message);
+      }
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }
 
   return (
@@ -65,7 +72,11 @@ function App() {
               Home
             </a>
             <div className="text-lg border-r-2 border-slate-500" />
-            <a href="https://github.com/aman090304/Musica" target="__blank" className="text-lg px-2 hover:underline  md:px-5 ">
+            <a
+              href="https://github.com/aman090304/Musica"
+              target="__blank"
+              className="text-lg px-2 hover:underline  md:px-5 "
+            >
               Github
             </a>
           </div>
@@ -75,9 +86,9 @@ function App() {
       {/* <div className="flex justify-center font-semibold text-5xl pt-28 pb-5">
         <h1>A-music</h1>
       </div> */}
-      <div class="flex justify-center font-semibold text-5xl pt-28 pb-5">
-        <div class="">
-          <h1 class=" animate-typing overflow-hidden whitespace-nowrap border-r-4 border-r-black pr-5 text-5xl text-black font-semibold">
+      <div className="flex justify-center font-semibold text-5xl pt-28 pb-5">
+        <div className="">
+          <h1 className=" animate-typing overflow-hidden whitespace-nowrap border-r-4 border-r-black pr-5 text-5xl text-black font-semibold">
             A-music
           </h1>
         </div>
@@ -98,6 +109,16 @@ function App() {
         <Loader />
         <Loader />
         <Loader />
+      </div>
+
+      <div
+        className={`px-2 sm:px-8 sm:text-2xl text-xl flex justify-center md:px-12 lg:px-10  overflow-x-hidden  ${
+          isAvailable ? "p-4" : "hidden"
+        }`}
+      >
+        <h2>
+          Error 429: Too many API requests. Try again later :( <br />   
+        </h2>
       </div>
 
       <div className="px-2 py-2 sm:px-8 md:px-12 lg:px-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 overflow-x-hidden">
